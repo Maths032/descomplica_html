@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário do Trabalho</title>
+
+        <script type="text/javascript" >
+            // script para montar classes
+            class Funcionario {
+
+                constructor(nome, idade, cargo) {
+                    this.nome = nome;
+                    this.idade = idade;
+                    this.cargo = cargo;
+                }
+
+
+                seApresentar() {
+                  return `Oi, meu nome é ${this.nome} e eu sou ${this.cargo}.`;
+                }
+
+
+                trabalhar() {
+                  return `${this.nome} está trabalhando.`;
+                }
+            }
+
+            class Gerente extends Funcionario {
+
+                constructor(nome, idade, departamento) {
+                    super(nome, idade, 'Gerente');
+                    this.departamento = departamento;
+                }
+
+
+                gerenciar() {
+                    return `${this.nome} está gerenciando o departamento de ${this.departamento}.`;
+                }
+
+
+            }
+
+
+            class Desenvolvedor extends Funcionario {
+
+
+                constructor(nome, idade, linguagem) {
+                    super(nome, idade, 'Desenvolvedor');
+                    this.linguagem = linguagem;
+                }
+
+
+                programar() {
+                 return `${this.nome} está programando em ${this.linguagem}.`;
+                }
+
+            }
+        </script>
+        <script type="text/javascript">
+            // script para usar as classes criadas e validar formulário
+
+            function exibirErro(mensagem) {
+                alert('Não foi possível enviar o formulário.' + mensagem)
+
+                const divErro = document.getElementById('erro');
+                divErro.innerHTML = mensagem;
+                divErro.style.display = 'block';
+                divErro.style.color = 'red';
+                divErro.style.border = '1px solid red';
+            }
+
+            function checkForm(){
+
+                
+                //     const nome = document.getElementById('nome').value;
+                //     const idade = document.getElementById('idade').value;
+                //     const cargo = document.getElementById('cargo').value;
+                //     const departamento = document.getElementById('departamento').value;
+                //     const linguagem = document.getElementById('linguagem').value;
+                    
+                //      //verifica se algum campo está em branco
+                //     if (nome === '' || idade === '' || cargo === '' || departamento === '' || linguagem === '') {
+                //         throw new Error('Todos os campos são obrigatórios.');
+
+                //         // verifica se a idade é válida
+                //     } else if (idade < 0 || idade > 120 || isNaN(idade)) {
+                //         throw new Error('Idade inválida.');
+                //     } else {
+                //         //se tudo estiver ok, cria o funcionário, gerente e desenvolvedor
+
+                //         const funcionario = new Funcionario(nome, idade, cargo);
+                //         const gerente = new Gerente(nome, idade, departamento);
+                //         const desenvolvedor = new Desenvolvedor(nome, idade, linguagem);
+
+
+                //         // remove a div de erro
+                //         const divErro = document.getElementById('erro');
+                //         divErro.style.display = 'none';
+
+                //         // exibe o resultado da ação de cada um
+                //         alert(funcionario.seApresentar());
+                //         alert(funcionario.trabalhar());
+                //         alert(gerente.gerenciar());
+                //         alert(desenvolvedor.programar());            
+
+                //         // exibe o resultado na página
+                //         const divResultado = document.getElementById('resultado');
+                //         divResultado.style.display = 'block';
+                //         const pApresentacao = document.getElementById('apresentacao');
+                //         pApresentacao.innerHTML = funcionario.seApresentar();
+                //         const pTrabalho = document.getElementById('trabalho');
+                //         pTrabalho.innerHTML = funcionario.trabalhar();
+                //         const pGerencia = document.getElementById('gerencia');
+                //         pGerencia.innerHTML = gerente.gerenciar();
+                //         const pProgramacao = document.getElementById('programacao');
+                //         pProgramacao.innerHTML = desenvolvedor.programar();
+
+                //     }
+                // } catch (error) {
+                //     exibirErro(error.message);
+                // }
+
+                try {
+                    const nome_func = document.getElementById('nome_func').value;
+                    const idade_func = document.getElementById('idade_func').value;
+                    const cargo = document.getElementById('cargo').value;
+
+                    const nome_ger = document.getElementById('nome_ger').value;
+                    const idade_ger = document.getElementById('idade_ger').value;
+                    const departamento = document.getElementById('departamento').value;
+
+                    const nome_dev = document.getElementById('nome_dev').value;
+                    const idade_dev = document.getElementById('idade_dev').value;
+                    const linguagem = document.getElementById('linguagem').value;
+
+                    //verifica se algum campo está em branco
+                    if (nome_func === '' || idade_func === '' || cargo === '' || nome_ger === '' || idade_ger === '' || departamento === '' || nome_dev === '' || idade_dev === '' || linguagem === '') {
+                        throw new Error('Todos os campos são obrigatórios.');
+
+                        // verifica se a idade é válida
+                    } else if (idade_func < 0 || idade_func > 120 || isNaN(idade_func) || idade_ger < 0 || idade_ger > 120 || isNaN(idade_ger) || idade_dev < 0 || idade_dev > 120 || isNaN(idade_dev)) {
+                        throw new Error('Idade inválida.');
+                    } else {
+                        //se tudo estiver ok, cria o funcionário, gerente e desenvolvedor
+
+                        const funcionario = new Funcionario(nome_func, idade_func, cargo);
+                        const gerente = new Gerente(nome_ger, idade_ger, departamento);
+                        const desenvolvedor = new Desenvolvedor(nome_dev, idade_dev, linguagem);
+
+                        // remove a div de erro
+                        const divErro = document.getElementById('erro');
+                        divErro.style.display = 'none';
+
+                        // exibe o resultado da ação de cada um em alert
+                        alert(funcionario.seApresentar());
+                        alert(funcionario.trabalhar());
+                        alert(gerente.gerenciar());
+                        alert(desenvolvedor.programar());
+                        
+
+                        // exibe o resultado na página
+                        const divResultado = document.getElementById('resultado');
+                        divResultado.style.display = 'block';
+                        const pApresentacao = document.getElementById('apresentacao');
+                        pApresentacao.innerHTML = funcionario.seApresentar();
+                        const pTrabalho = document.getElementById('trabalho');
+                        pTrabalho.innerHTML = funcionario.trabalhar();
+                        const pGerencia = document.getElementById('gerencia');
+                        pGerencia.innerHTML = gerente.gerenciar();
+                        const pProgramacao = document.getElementById('programacao');
+                        pProgramacao.innerHTML = desenvolvedor.programar();
+
+
+
+                    }
+                } catch (error) {
+                    exibirErro(error.message);
+                }
+            }
+                
+
+        </script>
+    </head>
+    <body>
+        <h1>Formulário do Trabalho</h1>
+        <div id="erro" style="display: none;"></div>
+        <p>Preencha os campos abaixo:</p>
+        <form>
+            <fieldset style="margin-left: auto; margin-right: auto;">
+
+                <!-- funcionario  -->
+                <div id="funcionario" style="display: block; margin-bottom: 10px">
+                    <label for="nome">Nome funcionario: </label>
+                    <input type="text" id="nome_func" name="nome" placeholder="Nome" required>
+                    <br>
+                    <label for="idade">Idade funcionario:</label>
+                    <input type="number" id="idade_func" name="idade" placeholder="Idade" required>
+                    <br>
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" name="cargo" placeholder="Cargo" required>
+                    <br>
+                </div>
+
+                <!-- gerente -->
+                <div id="gerente" style="display: block; margin-bottom: 10px">
+                    <label for="nome">Nome gerente: </label>
+                    <input type="text" id="nome_ger" name="nome" placeholder="Nome" required>
+                    <br>
+                    <label for="idade">Idade gerente:</label>
+                    <input type="number" id="idade_ger" name="idade" placeholder="Idade" required>
+                    <br>
+                    <label for="departamento">Departamento:</label>
+                    <input type="text" id="departamento" name="departamento" placeholder="Departamento" required>
+                    <br>
+                </div>
+
+                <!-- desenvolvedor -->
+                <div id="desenvolvedor" style="display: block; margin-bottom: 10px">
+                    <label for="nome">Nome dev: </label>
+                    <input type="text" id="nome_dev" name="nome" placeholder="Nome" required>
+                    <br>
+                    <label for="idade">Idade dev:</label>
+                    <input type="number" id="idade_dev" name="idade" placeholder="Idade" required>
+                    <br>
+                    <label for="linguagem">Linguagem de Programação:</label>
+                    <input type="text" id="linguagem" name="linguagem" placeholder="Linguagem de Programação" required>
+                    <br>
+                </div>
+                <input type="button" onclick="checkForm()" value="Enviar">
+            </fieldset>
+        </form>
+
+        <!-- resultado -->
+        <div id="resultado" style="display: none; background-color: #91afff; padding: 10px;">   
+            <h2>Resultado</h2>
+            <p id="apresentacao"></p>
+            <p id="trabalho"></p>
+            <p id="gerencia"></p>
+            <p id="programacao"></p>
+        </div>
+
+        <footer
+            style="position: fixed; bottom: 0; width: 100%; text-align: center; padding: 10px; background-color: #f2f2f2;"
+        >
+            <p>Feito por maths032 para atividade da faculdade descomplica - 2024</p>
+        </footer>
+    </body>
+</html>
